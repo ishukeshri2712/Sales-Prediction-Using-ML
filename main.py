@@ -24,14 +24,11 @@ def result():
 
     X = np.array([[item_weight, item_fat_content, item_visibility, item_type, item_mrp,
                    outlet_establishment_year, outlet_size, outlet_location_type, outlet_type]])
-    scaler_path = r'models\sc.sav'
-
-    sc = joblib.load(scaler_path)
+    
+    sc = joblib.load('sc.sav')
     X_std = sc.transform(X)
 
-    model_path = r'models\lr.sav'
-
-    model = joblib.load(model_path)
+    model = joblib.load('lr.sav')
     Y_pred = model.predict(X_std)
     return render_template("predict.html",value=Y_pred)
 
